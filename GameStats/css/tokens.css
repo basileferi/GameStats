@@ -1,10 +1,21 @@
 :root {
 
-    --color-primary: #d62828;
-    --color-secondary: #003049;
+    /* Orange/Jaune Ocre */
+    --color-primary: #F4A261;
 
+    /* Rouge Carmin */
+    --color-secondary: #C1121F;
 
-    --color-text: #1a1a1a;
+    /* Blanc cassé */
+    --color-tertiary: #FAFAFA;
+
+    /* Noir charbon */
+    --color-text: #0B0B0B;
+
+    /* Beige Brut */
     --color-background: #EDE0D4;
+
+    --font-display: "LC Mogi", sans-serif;
+    --font-body: "IBM Plex Sans", sans-serif;
 
 }
