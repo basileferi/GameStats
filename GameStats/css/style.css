@@ -1,0 +1,31 @@
+header {
+    position: fixed;
+}
+
+
+section {
+    min-height: 80vh;
+}
+
+
+#section1 {
+    background-color: red;
+}
+
+#section2 {
+    background-color: blue;
+}
+
+#section3 {
+    background-color: green;
+}
+
+#section4 {
+    background-color: black;
+}
+
+
+nav li.active a {
+    font-weight: bold;
+    color: #d62828;
+}

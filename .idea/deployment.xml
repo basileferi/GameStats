@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="24.gremmi.fr" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false">
+    <option name="confirmBeforeUploading" value="false" />
     <serverData>
       <paths name="24.gremmi.fr">
         <serverdata>
           <mappings>
-            <mapping deploy="sae303" local="$PROJECT_DIR$" web="/sae303" />
+            <mapping deploy="sae303" local="$PROJECT_DIR$/GameStats" web="/sae303" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="SAE301">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
