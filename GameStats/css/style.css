@@ -8,31 +8,109 @@
     font-style: normal;
     font-display: swap;
 }
-header {
-    position: fixed;
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
+.snap-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
 
 section {
-    min-height: 80vh;
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+
+
+
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+
+.progress {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.progress-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.progress-list li {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+}
+
+.progress-list li.active {
+    background: #d62828;
+}
+
+
 
 
 #section1 {
-    background-color: red;
+    background-color: var(--color-background);
 }
 
 #section2 {
-    background-color: blue;
+    background-color: var(--color-tertiary);
 }
 
 #section3 {
-    background-color: green;
+    background-color: var(--color-primary);
 }
 
 #section4 {
-    background-color: black;
+    background-color: var(--color-background);
 }
+
+#section5 {
+    background-color: var(--color-tertiary);
+}
+
+#section6 {
+    background-color: var(--color-secondary);
+}
+
+#section7 {
+    background-color: var(--color-background);
+}
+
+#section8 {
+    background-color: var(--color-tertiary);
+}
+
 
 
 nav li.active a {
