@@ -159,5 +159,5 @@ footer .footer-content {
 
 nav li.active a {
     font-weight: bold;
-    color: #d62828;
+    color: var(--color-secondary);
 }
