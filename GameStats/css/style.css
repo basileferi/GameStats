@@ -40,6 +40,7 @@ p {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    padding-top: 3.75rem;
 }
 
 section {
@@ -47,10 +48,11 @@ section {
     width: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 80px;
+    box-sizing: border-box;
 }
 
 
@@ -160,4 +162,116 @@ footer .footer-content {
 nav li.active a {
     font-weight: bold;
     color: var(--color-secondary);
+}
+
+
+/* ============================================
+   LAYOUT SECTION AVEC CONTENU DYNAMIQUE
+   ============================================ */
+
+/**
+ * Structure : Titre + Texte en haut, Contenu au centre, Source en bas
+ *
+ * POURQUOI ce layout ?
+ * - Flexbox permet un alignement vertical flexible
+ * - justify-content: space-between sépare le haut et le bas
+ * - Le contenu dynamique prend l'espace restant
+ */
+section .page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    position: relative;
+    padding-bottom: 3rem; /* Espace pour la source */
+}
+
+/**
+ * Conteneur du contenu dynamique (Chart/Image/Lottie)
+ *
+ * POURQUOI flex: 1 ?
+ * - Prend tout l'espace disponible entre le texte et la source
+ * - S'adapte automatiquement à la hauteur de la section
+ */
+.stat-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    min-height: 300px;
+}
+
+/**
+ * Styles spécifiques aux différents types de contenu
+ */
+
+/* Images */
+.stat-content img {
+    max-width: 100%;
+    max-height: 400px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+/* Canvas Chart.js */
+.stat-content canvas {
+    max-width: 100%;
+    max-height: 400px;
+}
+
+/* Animation Lottie */
+.lottie-container {
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+}
+
+/**
+ * Lien source en bas à gauche
+ *
+ * POURQUOI position: absolute ?
+ * - Toujours en bas à gauche, même si le contenu varie
+ * - Ne perturbe pas le flow des autres éléments
+ */
+.stat-source {
+    position: absolute;
+    bottom: 1rem;
+    left: clamp(3rem, 12vw, 12.19rem); /* Même padding que .page-content */
+    font-family: "IBM Plex Sans", monospace;
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.stat-source:hover {
+    opacity: 0.7;
+}
+
+.stat-source::after {
+    content: "↗";
+    font-size: 1rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .stat-content {
+        min-height: 200px;
+    }
+
+    .lottie-container {
+        height: 300px;
+    }
+
+    .stat-source {
+        left: 3rem;
+        font-size: 0.8rem;
+    }
 }
