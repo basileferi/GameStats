@@ -2,9 +2,9 @@
 
 @font-face {
     font-family: "LC Mogi";
-    src: url("../assets/fonts/woff2/LCMogi-A.woff2") format("woff2"),
-    url("../assets/fonts/ttf/LCMogi-A.ttf") format("truetype");
-    font-weight: 400;
+    src: url("../assets/fonts/woff2/LCMogi-C.woff2") format("woff2"),
+    url("../assets/fonts/ttf/LCMogi-C.ttf") format("truetype");
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -14,6 +14,25 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow: hidden;
+}
+
+.page-content {
+    padding-inline: clamp(3rem, 12vw, 12.19rem);
+    box-sizing: border-box;
+}
+
+
+h1, h2, h3, h4 {
+    font-family: "LC Mogi", monospace;
+}
+
+h5, h6 {
+    font-family: "IBM Plex Sans", monospace;
+}
+
+p {
+    font-family: "IBM Plex Sans", monospace;
 }
 
 .snap-container {
@@ -25,6 +44,7 @@ html, body {
 
 section {
     height: 100vh;
+    width: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
 
@@ -35,23 +55,43 @@ section {
 
 
 
-
-
-
 header {
+    background-color: var(--color-primary);
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 1000;
+    display: flex;
 }
+
+.header-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#header-right {
+    margin-left: auto;
+}
+
+section .footer-content {
+    display: flex;
+    flex-direction: column;   /* stack vertically */
+    align-items: center;      /* horizontal centering */
+    text-align: center;
+    width: 100%;
+}
+
+footer .footer-content {
+    gap: 0.5rem; /* adjust as needed */
+}
+
 
 
 .progress {
     position: fixed;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
 }
 
@@ -61,19 +101,19 @@ header {
     padding: 0;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 12px;
 }
 
 .progress-list li {
-    width: 8px;
-    height: 8px;
+    width: 1.15831rem;
+    height: 1.05869rem;
     border-radius: 50%;
-    background: rgba(0,0,0,0.3);
+    background: var(--color-tertiary);
 }
 
 .progress-list li.active {
-    background: #d62828;
+    background: var(--color-secondary);
 }
 
 
@@ -100,7 +140,7 @@ header {
 }
 
 #section6 {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
 }
 
 #section7 {
@@ -108,6 +148,10 @@ header {
 }
 
 #section8 {
+    background-color: var(--color-tertiary);
+}
+
+#footer-section {
     background-color: var(--color-tertiary);
 }
 

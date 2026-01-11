@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="css/tokens.css">
 
 </head>
-<body>
-
-<h1>Gamestats</h1>
-
 <header>
+    <div class="page-content header-content">
+        <div id="header-left" class="container">
+            <h3>Gamestats</h3>
+        </div>
+        <div id="header-right" class="container">
+            <h5>Contact</h5>
+        </div>
+    </div>
     <aside class="progress">
         <ul class="progress-list">
             <li data-section="section1"></li>
@@ -25,59 +29,72 @@
         </ul>
     </aside>
 </header>
+<body>
 
 <main class="snap-container">
 
     <section id="section1">
-        <h2>Section 1</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, eius.</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, eius.</p>
+        </div></section>
     <section id="section2">
-        <h2>Section 2</h2>
-        <p>Deleniti et facere impedit inventore laudantium, minima reprehenderit sapiente temporibus.</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 2</h2>
+            <p>Deleniti et facere impedit inventore laudantium, minima reprehenderit sapiente temporibus.</p>
+        </div></section>
     <section id="section3">
-        <h2>Section 3</h2>
-        <p>Beatae est et illo iusto maxime nihil quisquam sapiente sint?</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 3</h2>
+            <p>Beatae est et illo iusto maxime nihil quisquam sapiente sint?</p>
+        </div></section>
     <section id="section4">
-        <h2>Section 4</h2>
-        <p>Animi, iste perferendis suscipit tenetur veritatis vitae voluptate voluptates voluptatum.</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 4</h2>
+            <p>Animi, iste perferendis suscipit tenetur veritatis vitae voluptate voluptates voluptatum.</p>
+        </div></section>
     <section id="section5">
-        <h2>Section 5</h2>
-        <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 5</h2>
+            <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
+        </div></section>
     <section id="section6">
-        <h2>Section 6</h2>
-        <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 6</h2>
+            <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
+        </div></section>
     <section id="section7">
-        <h2>Section 7</h2>
-        <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
-    </section>
+        <div class="page-content">
+            <h2>Section 7</h2>
+            <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
+        </div></section>
     <section id="section8">
-        <h2>Section 8</h2>
-        <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
+        <div class="page-content">
+            <h2>Section 8</h2>
+            <p>Aliquam amet deserunt ducimus ipsa ipsam iusto, maxime molestiae quis.</p>
+        </div></section>
+
+    <section id="footer-section">
+        <footer>
+            <div class="page-content">
+                <div class="container">
+                    <h3>Gamestats</h3>
+                </div>
+                <div class="container footer-content">
+                    <h5 data-copyright></h5>
+                </div>
+            </div>
+        </footer>
     </section>
 
 </main>
-
-<footer>
-    <div class="container">
-        <h1>Gamestats</h1>
-    </div>
-    <div class="container">
-        <h2 data-copyright></h2>
-    </div>
-</footer>
 
 <script src="lib/gumshoe.polyfills.min.js"></script>
 <script src="js/main.js"></script>
 <script>
     const year = new Date().getFullYear();
     document.querySelector("[data-copyright]").textContent =
-        `© ${year} - FERRAND-RICHARTE Basiile - Tous droits réservés`;
+        `© ${year} - FERRAND-RICHARTE Basile - Tous droits réservés`;
 </script>
 </body>
 </html>
