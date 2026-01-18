@@ -230,18 +230,6 @@ class StatSection {
     }
 
     /**
-     * Rendu d'une animation Lottie
-     *
-     * DONNÉES ATTENDUES dans contentData :
-     * "chemin/vers/animation.json" (string)
-     * OU
-     * { ... } (objet JSON Lottie directement)
-     *
-     * POURQUOI Lottie ?
-     * - Animations vectorielles légères
-     * - Qualité parfaite à toutes les tailles
-     * - Créées facilement avec After Effects
-     *
      * @param {HTMLElement} container - Conteneur où injecter l'animation
      */
     renderLottie(container) {
@@ -265,7 +253,6 @@ class StatSection {
         const config = {
             container: lottieDiv,
             renderer: 'svg',
-            loop: true,
             autoplay: true
         };
 
@@ -321,8 +308,8 @@ const sectionsData = [
         text: "Sujet du jour :\n" +
             "Pourquoi les studios indépendants sont essentiels à l’industrie du jeu-vidéo ?",
         source: null,
-        contentType: "image",
-        contentData: "",
+        contentType: "lottie",
+        contentData: "GameStats/assets/lotties/Illustration_0_Boite.json",
         bgColor: "var(--color-background)"
     },
     {
@@ -330,7 +317,7 @@ const sectionsData = [
         title: "Joueurs",
         text: "38,3 millions de joueurs en France, soit environ 7 Français sur 10 pratiquent le jeu vidéo.",
         source: "https://www.blogdumoderateur.com/chiffres-jeu-video/",
-        contentType: "image",
+        contentType: "GameStats/assets/lotties/Illustration_4_France.json",
         contentData: "",
         bgColor: "var(--color-tertiary)"
     },
@@ -339,8 +326,8 @@ const sectionsData = [
         title: "Industrie",
         text: "Chiffre d’affaires du marché français : 5,7 milliards d’euros en 2024 (-5,8 % vs 2023).",
         source: "https://www.sell.fr/sites/default/files/essentiel-jeu-video/def_ejv_mars_2025.pdf",
-        contentType: "image",
-        contentData: "https://via.placeholder.com/600x400/4ecca3/ffffff?text=PlayStation+5",
+        contentType: "lottie",
+        contentData: "GameStats/assets/lotties/Illustration_2_Cadis.json",
         bgColor: "var(--color-primary)"
     },
     {
@@ -383,7 +370,7 @@ const sectionsData = [
         text: "70% des gagnants aux game awards sont indépendants",
         source: null,
         contentType: "lottie",
-        contentData: "https://lottie.host/4db68bbd-31f6-4cd8-b6f9-b4c14ecf7e5b/ZJbr0CC2Lq.json",
+        contentData: "GameStats/assets/lotties/Illustration_5_Trophee.json",
         bgColor: "var(--color-tertiary)"
     },
     {
@@ -391,31 +378,8 @@ const sectionsData = [
         title: "Sorties",
         text: "Volume de sorties élevé : 14 531 jeux publiés en 2023 (France / données sectorielles).",
         source: "https://documentation.onisep.fr/doc_num.php?explnum_id=72711&",
-        contentType: "chart",
-        contentData: {
-            type: 'bar',
-            data: {
-                labels: ['Jeu A', 'Jeu B', 'Jeu C', 'Jeu D', 'Jeu E'],
-                datasets: [{
-                    label: 'Ventes (millions)',
-                    data: [15, 12, 10, 8, 7],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(54, 162, 235, 0.8)',
-                        'rgba(255, 206, 86, 0.8)',
-                        'rgba(75, 192, 192, 0.8)',
-                        'rgba(153, 102, 255, 0.8)'
-                    ]
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                plugins: {
-                    legend: { display: false }
-                }
-            }
-        },
+        contentType: "lottie",
+        contentData: "GameStats/assets/lotties/Illustration_3_Repetition.json",
         bgColor: "var(--color-primary)"
     },
     {
@@ -423,8 +387,8 @@ const sectionsData = [
         title: "Indépendance",
         text: "55 % des jeux développés en 2024 sont des jeux « indépendants ».",
         source: "https://afjv.com/chiffres_jeux_video.php?c=ventes&",
-        contentType: "image",
-        contentData: "https://via.placeholder.com/600x400/16213e/ffffff?text=Gaming+Stats",
+        contentType: "lottie",
+        contentData: "GameStats/assets/lotties/Illustration_1_Independant.json",
         bgColor: "var(--color-background)"
     },
     {
