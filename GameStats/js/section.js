@@ -253,7 +253,7 @@ class StatSection {
         const config = {
             container: lottieDiv,
             renderer: 'svg',
-            autoplay: true
+            autoplay: false
         };
 
         // Si contentData est un string, c'est un chemin vers un fichier JSON
@@ -264,7 +264,28 @@ class StatSection {
             config.animationData = this.contentData;
         }
 
-        lottie.loadAnimation(config);
+        const animation = lottie.loadAnimation(config);
+
+// Observer pour démarrer l'animation au scroll
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animation.goToAndPlay(0); // Démarre l'animation
+                    } else {
+                        animation.pause(); // Met en pause quand invisible
+                    }
+                });
+            },
+            { threshold: 0.3 } // Démarre quand 30% de la section est visible
+        );
+
+// Observer la section parente
+        const section = container.closest('section');
+        if (section) {
+            observer.observe(section);
+        }
+
         console.log(`✅ Lottie rendu pour ${this.id}`);
     }
 }
@@ -309,7 +330,7 @@ const sectionsData = [
             "Pourquoi les studios indépendants sont essentiels à l’industrie du jeu-vidéo ?",
         source: null,
         contentType: "lottie",
-        contentData: "GameStats/assets/lotties/Illustration_0_Boite.json",
+        contentData: "assets/lotties/Illustration_0_Boite.json",
         bgColor: "var(--color-background)"
     },
     {
@@ -317,8 +338,8 @@ const sectionsData = [
         title: "Joueurs",
         text: "38,3 millions de joueurs en France, soit environ 7 Français sur 10 pratiquent le jeu vidéo.",
         source: "https://www.blogdumoderateur.com/chiffres-jeu-video/",
-        contentType: "GameStats/assets/lotties/Illustration_4_France.json",
-        contentData: "",
+        contentType: "lottie",
+        contentData: "assets/lotties/Illustration_4_France.json",
         bgColor: "var(--color-tertiary)"
     },
     {
@@ -327,7 +348,7 @@ const sectionsData = [
         text: "Chiffre d’affaires du marché français : 5,7 milliards d’euros en 2024 (-5,8 % vs 2023).",
         source: "https://www.sell.fr/sites/default/files/essentiel-jeu-video/def_ejv_mars_2025.pdf",
         contentType: "lottie",
-        contentData: "GameStats/assets/lotties/Illustration_2_Cadis.json",
+        contentData: "assets/lotties/Illustration_2_Cadis.json",
         bgColor: "var(--color-primary)"
     },
     {
@@ -370,7 +391,7 @@ const sectionsData = [
         text: "70% des gagnants aux game awards sont indépendants",
         source: null,
         contentType: "lottie",
-        contentData: "GameStats/assets/lotties/Illustration_5_Trophee.json",
+        contentData: "assets/lotties/Illustration_5_Trophee.json",
         bgColor: "var(--color-tertiary)"
     },
     {
@@ -379,7 +400,7 @@ const sectionsData = [
         text: "Volume de sorties élevé : 14 531 jeux publiés en 2023 (France / données sectorielles).",
         source: "https://documentation.onisep.fr/doc_num.php?explnum_id=72711&",
         contentType: "lottie",
-        contentData: "GameStats/assets/lotties/Illustration_3_Repetition.json",
+        contentData: "assets/lotties/Illustration_3_Repetition.json",
         bgColor: "var(--color-primary)"
     },
     {
@@ -388,7 +409,7 @@ const sectionsData = [
         text: "55 % des jeux développés en 2024 sont des jeux « indépendants ».",
         source: "https://afjv.com/chiffres_jeux_video.php?c=ventes&",
         contentType: "lottie",
-        contentData: "GameStats/assets/lotties/Illustration_1_Independant.json",
+        contentData: "assets/lotties/Illustration_1_Independant.json",
         bgColor: "var(--color-background)"
     },
     {

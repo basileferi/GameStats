@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="eb758ad5-031e-4aa8-9e44-61b5753692f5" name="24.gremmi.fr" url="http://ferrabas.24.gremmi.fr">
-        <fileTransfer rootFolder="/mmi/ferrabas/web" accessType="SFTP" host="24.gremmi.fr" port="22" sshConfigId="c72e20b1-92d5-42f7-9fcb-cd8794f931fa" sshConfig="ts31@24.gremmi.fr:22 key" keyPair="true">
+        <fileTransfer rootFolder="/mmi/ferrabas/web" accessType="SFTP" host="24.gremmi.fr" port="22" sshConfigId="c72e20b1-92d5-42f7-9fcb-cd8794f931fa" sshConfig="ferrabas@24.gremmi.fr:22 key" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
