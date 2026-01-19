@@ -230,7 +230,7 @@ section .page-content {
 /* Canvas Chart.js */
 .stat-content canvas {
     max-width: 100%;
-    max-height: 400px;
+    max-height: 400px ;
 }
 
 .lottie-container {
@@ -243,14 +243,15 @@ section .page-content {
 @media (max-width: 768px) {
     .lottie-container {
         max-width: 100%;  /* Prend toute la largeur disponible */
-        height: 500px;    /* Plus haut qu'en desktop */
+        height: 700px !important;    /* Plus haut qu'en desktop */
+        min-height: 500px !important;
     }
 }
 
 /* Très petits écrans */
 @media (max-width: 480px) {
     .lottie-container {
-        height: 400px;    /* Ajustement pour petits écrans */
+        height: 500px !important;    /* Ajustement pour petits écrans */
     }
 }
 
