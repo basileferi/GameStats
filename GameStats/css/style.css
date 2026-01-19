@@ -95,6 +95,11 @@ footer .footer-content {
 }
 
 
+a:visited {
+    color: #3e3e3e;
+}
+
+
 
 .progress {
     position: fixed;
@@ -228,11 +233,25 @@ section .page-content {
     max-height: 400px;
 }
 
-/* Animation Lottie */
 .lottie-container {
     width: 100%;
     max-width: 500px;
     height: 400px;
+}
+
+/* Mobile : Lotties plus grands */
+@media (max-width: 768px) {
+    .lottie-container {
+        max-width: 100%;  /* Prend toute la largeur disponible */
+        height: 500px;    /* Plus haut qu'en desktop */
+    }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+    .lottie-container {
+        height: 400px;    /* Ajustement pour petits écrans */
+    }
 }
 
 .button {

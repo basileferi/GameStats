@@ -354,36 +354,34 @@ const sectionsData = [
     {
         id: "section4",
         title: "Petits budgets",
-        text: "67,2 % des jeux développés en France ont un budget < 1 million €",
+        text: "67,2 % des jeux développés en France ont un budget < 1 million € en 2024",
         source: "https://www.devtodev.com/education/articles/en/511/game-market-overview-the-most-important-reports-published-in-november-2023?",
         contentType: "chart",
         contentData: {
-            type: 'bar',
+            type: 'polarArea',
             data: {
-                labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+                labels: ['Part de jeux sorties avec un budget supérieur à 1M €', 'Part Jeux sorties avec un budget inférieur à 1M €'],
                 datasets: [{
-                    label: 'Heures de jeu',
-                    data: [0.8, 0.9, 1.0, 1.2, 1.5, 2.5, 2.1],
-                    backgroundColor: 'rgba(75, 192, 192, 0.8)'
+                    label: 'Pourcentage',
+                    data: [32.8, 67.2],
+                    borderColor: "#0B0B0B",
+                    backgroundColor: '#C1121F'
                 }]
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: { display: false }
-                },
                 scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
+                    r: {
+                        pointLabels: {
                             display: true,
-                            text: 'Heures'
+                            font: {
+                                size: 13
+                            }
                         }
                     }
-                }
+                },
             }
         },
-        bgColor: "var(--color-background)"
     },
     {
         id: "section5",
@@ -419,14 +417,14 @@ const sectionsData = [
         source: "https://grand-est.numeric-emploi.org/publication/les-chiffres-cles-du-secteur-du-jeu-video-en-france?",
         contentType: "chart",
         contentData: {
-            type: 'line',
+            type: 'polarArea',
             data: {
-                labels: ['2021', '2022', '2023', '2024', '2025*'],
+                labels: ['2021', '2022', '2023', '2024', '2025'],
                 datasets: [{
-                    label: 'Revenus (Mds €)',
-                    data: [50, 60, 72, 85, 106],
-                    borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    label: 'Nouveaux emplois dans le jeu vidéo',
+                    data: ["+161", "+230", "+521", "+421", "+527"],
+                    borderColor: "#0B0B0B",
+                    backgroundColor: '#F4A261',
                     tension: 0.4
                 }]
             },
@@ -437,7 +435,6 @@ const sectionsData = [
                 }
             }
         },
-        bgColor: "var(--color-tertiary)"
     }
 ];
 
