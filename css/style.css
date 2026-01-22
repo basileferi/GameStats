@@ -84,14 +84,14 @@ header {
 
 section .footer-content {
     display: flex;
-    flex-direction: column;   /* stack vertically */
-    align-items: center;      /* horizontal centering */
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     width: 100%;
 }
 
 footer .footer-content {
-    gap: 0.5rem; /* adjust as needed */
+    gap: 0.5rem;
 }
 
 
@@ -195,15 +195,11 @@ section .page-content {
     justify-content: space-between;
     flex: 1;
     position: relative;
-    padding-bottom: 3rem; /* Espace pour la source */
+    padding-bottom: 3rem;
 }
 
 /**
  * Conteneur du contenu dynamique (Chart/Image/Lottie)
- *
- * POURQUOI flex: 1 ?
- * - Prend tout l'espace disponible entre le texte et la source
- * - S'adapte automatiquement à la hauteur de la section
  */
 .stat-content {
     flex: 1;
@@ -214,9 +210,7 @@ section .page-content {
     min-height: 300px;
 }
 
-/**
- * Styles spécifiques aux différents types de contenu
- */
+
 
 /* Images */
 .stat-content img {
@@ -242,8 +236,8 @@ section .page-content {
 /* Mobile : Lotties plus grands */
 @media (max-width: 768px) {
     .lottie-container {
-        max-width: 100%;  /* Prend toute la largeur disponible */
-        height: 700px !important;    /* Plus haut qu'en desktop */
+        max-width: 100%;
+        height: 700px !important;
         min-height: 500px !important;
     }
 }
@@ -251,7 +245,7 @@ section .page-content {
 /* Très petits écrans */
 @media (max-width: 480px) {
     .lottie-container {
-        height: 500px !important;    /* Ajustement pour petits écrans */
+        height: 500px !important;
     }
 }
 
@@ -261,15 +255,11 @@ section .page-content {
 
 /**
  * Lien source en bas à gauche
- *
- * POURQUOI position: absolute ?
- * - Toujours en bas à gauche, même si le contenu varie
- * - Ne perturbe pas le flow des autres éléments
  */
 .stat-source {
     position: absolute;
     bottom: 1rem;
-    left: clamp(3rem, 12vw, 12.19rem); /* Même padding que .page-content */
+    left: clamp(3rem, 12vw, 12.19rem);
     font-family: "IBM Plex Sans", monospace;
     font-size: 0.9rem;
     color: var(--color-secondary);

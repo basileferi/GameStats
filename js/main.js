@@ -1,14 +1,6 @@
-// ============================================
-// VIEWPORT MOBILE FIX
-// ============================================
 
 /**
- * Fixe les problèmes de hauteur viewport sur mobile
- *
- * POURQUOI ?
- * - Sur mobile, 100vh inclut parfois la barre d'adresse
- * - Cette fonction calcule la vraie hauteur visible
- * - Utilisée via var(--vh) dans le CSS
+ * Fixe les problèmes de hauteursur mobile
  */
 function setVH() {
     const vh = window.innerHeight * 0.01;
@@ -19,16 +11,11 @@ setVH();
 window.addEventListener('resize', setVH);
 
 // ============================================
-// SCROLL SPY - PROGRESS BAR
+// SCROLL SPY - la barre de progression
 // ============================================
 
 /**
- * Initialise l'observation du scroll pour la progress bar
- *
- * POURQUOI CETTE FONCTION ?
- * - Les sections sont créées dynamiquement par section.js
- * - On doit attendre qu'elles existent avant de les observer
- * - Appelée APRÈS l'injection des sections
+ * Initialise l'observation du scroll pour la barre de progression
  */
 function initScrollSpy() {
     const sections = document.querySelectorAll('section');
@@ -44,21 +31,16 @@ function initScrollSpy() {
 
     /**
      * IntersectionObserver surveille quand les sections entrent dans le viewport
-     *
-     * POURQUOI IntersectionObserver ?
-     * - Plus performant que scroll events (pas de calculs continus)
-     * - Détection précise de la visibilité
-     * - Natif au navigateur (pas de librairie externe)
      */
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
-                // On ne traite que les sections qui ENTRENT dans le viewport
+
                 if (!entry.isIntersecting) return;
 
                 const id = entry.target.id;
 
-                // Mise à jour de la navigation (si elle existe)
+
                 navLinks.forEach(link => {
                     link.classList.toggle(
                         'active',
@@ -66,7 +48,7 @@ function initScrollSpy() {
                     );
                 });
 
-                // Mise à jour de la progress bar
+
                 progressItems.forEach(item => {
                     item.classList.toggle(
                         'active',
@@ -76,8 +58,8 @@ function initScrollSpy() {
             });
         },
         {
-            root: scrollContainer,        // Observe dans le conteneur de scroll
-            threshold: 0.6                 // Déclenche quand 60% de la section est visible
+            root: scrollContainer,
+            threshold: 0.6
         }
     );
 
@@ -93,13 +75,6 @@ function initScrollSpy() {
 
 /**
  * Attendre que les sections soient créées avant d'initialiser le scroll spy
- *
- * POURQUOI setTimeout ?
- * - section.js s'exécute en premier et injecte les sections
- * - setTimeout(0) place initScrollSpy à la fin de la queue d'événements
- * - Garantit que les sections existent avant l'observation
- *
- * ALTERNATIVE : Utiliser un event custom émis par section.js
  */
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
