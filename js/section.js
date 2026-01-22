@@ -2,74 +2,47 @@
 // Gestion POO des sections
 // ============================================
 
-/**
- * Classe représentant une section statistique du site
- *
- * ARCHITECTURE :
- * - render() : Crée la structure HTML
- * - injectContent() : Routeur qui délègue selon contentType
- * - renderChart/Image/Lottie() : Méthodes spécialisées
- *
- */
 class StatSection {
-    /**
-     * Constructeur - Stocke la configuration de la section
-     *
-     * @param {Object} config - Configuration de la section
-     * @param {string} config.id - ID unique (ex: "section1")
-     * @param {string} config.title - Titre H2
-     * @param {string} config.text - Texte descriptif
-     * @param {string} config.source - URL de la source (lien cliquable)
-     * @param {string} config.sourceText - Texte du lien source (optionnel, défaut: "Source")
-     * @param {string} config.contentType - Type: "chart" | "image" | "lottie" | "none"
-     * @param {*} config.contentData - Données selon le type
-     * @param {string} config.bgColor - Couleur de fond CSS
-     */
     constructor(config) {
         this.id = config.id;
         this.title = config.title;
         this.text = config.text;
-
-
         this.source = config.source || null;
-
         this.sourceText = config.sourceText || "Source";
-
         this.contentType = config.contentType || 'none';
         this.contentData = config.contentData || null;
         this.bgColor = config.bgColor || 'var(--color-background)';
     }
-
 
     render() {
         const section = document.createElement('section');
         section.id = this.id;
         section.style.backgroundColor = this.bgColor;
 
-
+        // Le lien source est maintenant dans le flux normal
         const sourceHTML = (this.source && this.source !== '' && this.source !== '#')
             ? `<a href="${this.source}" target="_blank" rel="noopener noreferrer" class="stat-source">${this.sourceText}</a>`
-            : '';
+            : '<span class="stat-source-placeholder"></span>';
 
         section.innerHTML = `
             <div class="page-content">
-                <div>
-                    <h2>${this.title}</h2>
-                    <p>${this.text}</p>
+                <div class="stat-header">
+                    <h2 class="stat-title" data-final-text="${this.title}">${this.title}</h2>
+                    <p class="stat-text">${this.text}</p>
                 </div>
                 <div class="stat-content" id="${this.id}-content">
                     <!-- Contenu dynamique injecté par injectContent() -->
                 </div>
-                ${sourceHTML}
+                <div class="stat-footer">
+                    ${sourceHTML}
+                </div>
             </div>
         `;
-
 
         setTimeout(() => this.injectContent(section), 0);
 
         return section;
     }
-
 
     injectContent(section) {
         const container = section.querySelector(`#${this.id}-content`);
@@ -90,7 +63,6 @@ class StatSection {
                 this.renderLottie(container);
                 break;
             case 'none':
-                // Pas de contenu supplémentaire
                 break;
             default:
                 console.warn(`⚠️ Type de contenu inconnu: ${this.contentType}`);
@@ -98,10 +70,9 @@ class StatSection {
         }
     }
 
-
     renderChart(container) {
         if (typeof Chart === 'undefined') {
-            console.error('❌ Chart.js non chargé ! Ajoutez <script src="...chart.js"></script>');
+            console.error('❌ Chart.js non chargé !');
             container.innerHTML = '<p>Chart.js non disponible</p>';
             return;
         }
@@ -118,7 +89,6 @@ class StatSection {
         img.src = this.contentData;
         img.alt = this.title;
 
-        // Gestion d'erreur de chargement
         img.onerror = () => {
             console.error(`❌ Impossible de charger l'image: ${this.contentData}`);
             container.innerHTML = `<p>Image non disponible</p>`;
@@ -128,10 +98,9 @@ class StatSection {
         console.log(`✅ Image rendue pour ${this.id}`);
     }
 
-
     renderLottie(container) {
         if (typeof lottie === 'undefined') {
-            console.error('❌ Lottie non chargé ! Ajoutez <script src="...lottie.min.js"></script>');
+            console.error('❌ Lottie non chargé !');
             container.innerHTML = '<p>Lottie non disponible</p>';
             return;
         }
@@ -140,23 +109,19 @@ class StatSection {
         lottieDiv.className = 'lottie-container';
         container.appendChild(lottieDiv);
 
-
         const config = {
             container: lottieDiv,
             renderer: 'svg',
             autoplay: false
         };
 
-
         if (typeof this.contentData === 'string') {
             config.path = this.contentData;
         } else {
-            // Sinon c'est l'objet JSON directement
             config.animationData = this.contentData;
         }
 
         const animation = lottie.loadAnimation(config);
-
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -171,7 +136,6 @@ class StatSection {
             { threshold: 0.3 }
         );
 
-
         const section = container.closest('section');
         if (section) {
             observer.observe(section);
@@ -181,41 +145,11 @@ class StatSection {
     }
 }
 
-
-/**
- * Tableau de configuration de toutes les sections
- *
- * STRUCTURE DE CHAQUE SECTION :
- * {
- *   id: "sectionX",              // ID unique
- *   title: "...",                 // Titre H2
- *   text: "...",                  // Paragraphe descriptif
- *   source: "https://...",        // Lien source (affiché en bas à gauche)
- *   contentType: "chart|image|lottie|none",
- *   contentData: ...,             // Dépend du type
- *   bgColor: "var(--color-...)"   // Couleur de fond
- * }
- *
- * EXEMPLES DE contentData :
- *
- * 1. CHART :
- *    contentData: {
- *      type: 'bar',
- *      data: { labels: ['A', 'B'], datasets: [{data: [10, 20]}] }
- *    }
- *
- * 2. IMAGE :
- *    contentData: "images/graph.png"
- *
- * 3. LOTTIE :
- *    contentData: "animations/stats.json"
- */
 const sectionsData = [
     {
         id: "section1",
         title: "Vos statistiques du monde du jeu vidéo.",
-        text: "Sujet du jour :\n" +
-            "Pourquoi les studios indépendants sont essentiels à l’industrie du jeu-vidéo ?",
+        text: "Sujet du jour :\nPourquoi les studios indépendants sont essentiels à l'industrie du jeu-vidéo ?",
         source: null,
         contentType: "lottie",
         contentData: "assets/lotties/Illustration_0_Boite.json",
@@ -233,7 +167,7 @@ const sectionsData = [
     {
         id: "section3",
         title: "Industrie",
-        text: "Chiffre d’affaires du marché français : 5,7 milliards d’euros en 2024 (-5,8 % vs 2023).",
+        text: "Chiffre d'affaires du marché français : 5,7 milliards d'euros en 2024 (-5,8 % vs 2023).",
         source: "https://www.sell.fr/sites/default/files/essentiel-jeu-video/def_ejv_mars_2025.pdf",
         contentType: "lottie",
         contentData: "assets/lotties/Illustration_2_Cadis.json",
@@ -301,7 +235,7 @@ const sectionsData = [
     {
         id: "section8",
         title: "Emploi",
-        text: "Dynamique d’emploi / recrutement : ≈ 500 emplois créés dans les studios en 2023 ; ~50 % des studios recrutaient en 2023.",
+        text: "Dynamique d'emploi / recrutement : ≈ 500 emplois créés dans les studios en 2023 ; ~50 % des studios recrutaient en 2023.",
         source: "https://grand-est.numeric-emploi.org/publication/les-chiffres-cles-du-secteur-du-jeu-video-en-france?",
         contentType: "chart",
         contentData: {
@@ -326,10 +260,6 @@ const sectionsData = [
     }
 ];
 
-
-/**
- * injecte  sections dans le DOM
- */
 function initSections() {
     const main = document.querySelector('.snap-container');
     const footer = document.getElementById('footer-section');
@@ -352,13 +282,9 @@ function initSections() {
     console.log(`✅ ${sectionsData.length} sections injectées avec succès`);
 }
 
-// ============================================
-// DÉCLENCHEMENT AU CHARGEMENT DU DOM
-// ============================================
-
-
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSections);
 } else {
     initSections();
 }
+

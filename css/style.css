@@ -9,7 +9,6 @@
     font-display: swap;
 }
 
-
 html, body {
     margin: 0;
     padding: 0;
@@ -21,7 +20,6 @@ html, body {
     padding-inline: clamp(3rem, 12vw, 12.19rem);
     box-sizing: border-box;
 }
-
 
 h1, h2, h3 {
     font-family: "LC Mogi", monospace;
@@ -45,25 +43,20 @@ p {
 }
 
 section {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top: 80px;
     box-sizing: border-box;
 }
 
-/* Assurer que le footer participe bien au scroll-snap */
 #footer-section {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     min-height: 100vh;
 }
-
-
 
 header {
     background-color: var(--color-primary);
@@ -85,7 +78,6 @@ header {
     gap: 8px;
 }
 
-
 #header-right {
     margin-left: auto;
 }
@@ -102,26 +94,26 @@ footer .footer-content {
     gap: 0.5rem;
 }
 
-
 a:visited {
     color: #3e3e3e;
 }
 
-
-
+/* ============================================
+   BARRE DE PROGRESSION
+   ============================================ */
 .progress {
     position: fixed;
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
+    padding: 0.5rem;
 }
 
 .progress-list {
     list-style: none;
     margin: 0;
     padding: 0;
-
     display: flex;
     flex-direction: row;
     gap: 12px;
@@ -132,205 +124,162 @@ a:visited {
     height: 1.05869rem;
     border-radius: 50%;
     background: var(--color-tertiary);
+    transition: background 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.progress-list li:hover {
+    transform: scale(1.2);
 }
 
 .progress-list li.active {
     background: var(--color-secondary);
+    transform: scale(1.15);
 }
 
+/* Mobile : dots plus gros */
+@media (max-width: 768px) {
+    .progress-list li {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 
-
-
-#section1 {
-    background-color: var(--color-background);
+    .progress-list {
+        gap: 16px;
+    }
 }
-
-#section2 {
-    background-color: var(--color-tertiary);
-}
-
-#section3 {
-    background-color: var(--color-primary);
-}
-
-#section4 {
-    background-color: var(--color-background);
-}
-
-#section5 {
-    background-color: var(--color-tertiary);
-}
-
-#section6 {
-    background-color: var(--color-primary);
-}
-
-#section7 {
-    background-color: var(--color-background);
-}
-
-#section8 {
-    background-color: var(--color-tertiary);
-}
-
-#footer-section {
-    background-color: var(--color-tertiary);
-}
-
-
-
-nav li.active a {
-    font-weight: bold;
-    color: var(--color-secondary);
-}
-
 
 /* ============================================
    LAYOUT SECTION AVEC CONTENU DYNAMIQUE
    ============================================ */
 
-/**
- * Structure : Titre + Texte en haut, Contenu au centre, Source en bas
- *
- * POURQUOI ce layout ?
- * - Flexbox permet un alignement vertical flexible
- * - justify-content: space-between sépare le haut et le bas
- * - Le contenu dynamique prend l'espace restant
- */
 section .page-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    flex: 1;
-    position: relative;
+    min-height: calc(100vh - 3.75rem);
+    padding-top: 4rem;
     padding-bottom: 3rem;
+    gap: 2rem;
 }
 
-/**
- * Conteneur du contenu dynamique (Chart/Image/Lottie)
- */
+.stat-header {
+    flex-shrink: 0;
+}
+
+.stat-title {
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+.stat-text {
+    margin: 0;
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+
 .stat-content {
-    flex: 1;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem 0;
-    min-height: 300px;
+    min-height: 200px;
+    max-height: 50vh;
+    overflow: visible;
 }
 
 
-
-/* Images */
-.stat-content img {
-    max-width: 100%;
-    max-height: 400px;
-    height: auto;
-    border-radius: 8px;
-    object-fit: contain;
+.stat-footer {
+    flex-shrink: 0;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
 }
 
-/* Canvas Chart.js */
-.stat-content canvas {
-    max-width: 100%;
-    max-height: 400px ;
-}
 
-.lottie-container {
-    width: 100%;
-    max-width: 500px;
-    height: 400px;
-}
-
-/* Mobile : Lotties plus grands */
-@media (max-width: 768px) {
-    .lottie-container {
-        max-width: 100%;
-        height: 700px !important;
-        min-height: 500px !important;
-    }
-}
-
-/* Très petits écrans */
-@media (max-width: 480px) {
-    .lottie-container {
-        height: 500px !important;
-    }
-}
-
-.button {
-    text-decoration: none;
-}
-
-/**
- * Lien source en bas à gauche
- */
 .stat-source {
-    position: absolute;
-    bottom: 1rem;
-    left: clamp(3rem, 12vw, 12.19rem);
     font-family: "IBM Plex Sans", monospace;
     font-size: 0.9rem;
     color: var(--color-secondary);
     text-decoration: none;
-    transition: opacity 0.3s ease;
-    display: flex;
+    transition: transform 0.2s ease;
+    display: inline-flex;
     align-items: center;
     gap: 0.3rem;
 }
 
 .stat-source:hover {
     opacity: 0.7;
+    transform: translateX(2px);
 }
 
 .stat-source::after {
     content: "↗";
     font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.stat-source:hover::after {
+    transform: translate(2px, -2px);
+}
+
+.stat-source-placeholder {
+    min-height: 1.5rem;
+    display: block;
 }
 
 /* ============================================
-   RESPONSIVE
+   CONTENU VISUEL
    ============================================ */
-@media (max-width: 768px) {
-    .stat-content {
-        min-height: 200px;
-    }
-
-    .lottie-container {
-        height: 300px;
-    }
-
-    .stat-source {
-        left: 3rem;
-        font-size: 0.8rem;
-    }
+.stat-content img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
 }
 
+.stat-content canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.lottie-container {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    max-height: 100%;
+}
+
+/* ============================================
+   HOVER EFFECTS SUR ÉLÉMENTS INTERACTIFS
+   ============================================ */
+.button {
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
 
 #scrollToTopBtn {
     position: fixed;
     bottom: 24px;
     right: 24px;
-
     width: 48px;
     height: 48px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border: none;
     border-radius: 999px;
-
     color: white;
-
     cursor: pointer;
-
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-
-    transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease,
-            opacity 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #scrollToTopBtn svg {
@@ -340,16 +289,133 @@ section .page-content {
 }
 
 #scrollToTopBtn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px) scale(1.05);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 #scrollToTopBtn:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.98);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 #scrollToTopBtn:focus-visible {
     outline: 2px solid #fff;
     outline-offset: 2px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .page-content {
+        padding-inline: 2rem;
+    }
+
+    section .page-content {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+        gap: 1.5rem;
+    }
+
+    .stat-content {
+        max-height: 45vh;
+        min-height: 150px;
+    }
+
+    .lottie-container {
+        max-width: 100%;
+    }
+
+    .stat-source {
+        font-size: 0.85rem;
+    }
+
+    #scrollToTopBtn {
+        bottom: 90px;
+        right: 16px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-content {
+        padding-inline: 1.5rem;
+    }
+
+    section .page-content {
+        padding-top: 2.5rem;
+        padding-bottom: 1.5rem;
+        gap: 1.25rem;
+    }
+
+    .stat-title {
+        font-size: 1.5rem;
+    }
+
+    .stat-text {
+        font-size: 0.95rem;
+    }
+
+    .stat-content {
+        max-height: 40vh;
+        min-height: 120px;
+    }
+
+    .stat-footer {
+        min-height: 2rem;
+    }
+
+    .stat-source {
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   HOVER TITRE — ESPACEMENT + SOULIGNEMENT
+   ============================================ */
+
+.stat-title {
+    position: relative;
+    display: inline-block;
+
+    transition:
+            letter-spacing 0.3s ease,
+            transform 0.3s ease;
+}
+
+/* underline moderne */
+.stat-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.25em;
+
+    width: 100%;
+    height: 2px;
+
+    background-color: currentColor;
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+}
+
+.stat-title:hover {
+    letter-spacing: 0.06em;
+}
+
+.stat-title:hover::after {
+    transform: scaleX(1);
+}
+
+/* Désactivation hover sur devices tactiles */
+@media (hover: none) {
+    .stat-title:hover {
+        letter-spacing: normal;
+    }
+
+    .stat-title::after {
+        display: none;
+    }
 }
