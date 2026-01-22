@@ -305,7 +305,7 @@ const sectionsData = [
         source: "https://grand-est.numeric-emploi.org/publication/les-chiffres-cles-du-secteur-du-jeu-video-en-france?",
         contentType: "chart",
         contentData: {
-            type: 'polarArea',
+            type: 'bar',
             data: {
                 labels: ['2021', '2022', '2023', '2024', '2025'],
                 datasets: [{

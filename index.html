@@ -8,39 +8,6 @@
     <link rel="stylesheet" href="css/tokens.css">
 
 </head>
-<!-- Script pour forcer le scroll en haut au rechargement -->
-<script>
-    // Force le scroll en haut immédiatement au chargement
-    (function() {
-        // Exécuté immédiatement pendant le parsing HTML
-        if (window.history.scrollRestoration) {
-            window.history.scrollRestoration = 'manual';
-        }
-        
-        // Force le scroll en haut
-        function scrollToTop() {
-            const snapContainer = document.querySelector('.snap-container');
-            if (snapContainer) {
-                snapContainer.scrollTop = 0;
-                snapContainer.scrollTo(0, 0);
-            }
-            window.scrollTo(0, 0);
-        }
-        
-        // Exécution immédiate
-        scrollToTop();
-        
-        // Exécution au DOM ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', scrollToTop);
-        } else {
-            scrollToTop();
-        }
-        
-        // Exécution après un court délai pour s'assurer que tout est chargé
-        setTimeout(scrollToTop, 50);
-    })();
-</script>
 <header>
     <div class="page-content header-content">
         <div id="header-left" class="container">
@@ -86,6 +53,28 @@
                 <div class="container footer-content">
                     <h5 data-copyright></h5>
                 </div>
+                <button
+                        type="button"
+                        id="scrollToTopBtn"
+                        aria-label="Remonter en haut de la page"
+                >
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                    >
+                        <title>up_line</title>
+                        <g id="up_line" fill="none" fill-rule="evenodd">
+                            <path d="M24 0v24H0V0h24Z" />
+                            <path
+                                    fill="#000000FF"
+                                    d="M11.293 8.293a1 1 0 0 1 1.414 0l5.657 5.657a1 1 0 0 1-1.414 1.414L12 10.414l-4.95 4.95a1 1 0 0 1-1.414-1.414l5.657-5.657Z"
+                            />
+                        </g>
+                    </svg>
+                </button>
             </div>
         </footer>
     </section>
@@ -95,10 +84,5 @@
 <script src="lib/lottie.min.js"></script>
 <script src="js/section.js"></script>
 <script src="js/main.js"></script>
-<script>
-    const year = new Date().getFullYear();
-    document.querySelector("[data-copyright]").textContent =
-        `© ${year} - FERRAND-RICHARTE Basile - Tous droits réservés`;
-</script>
 </body>
 </html>

@@ -304,3 +304,52 @@ section .page-content {
         font-size: 0.8rem;
     }
 }
+
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 999px;
+
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+    transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            opacity 0.2s ease;
+}
+
+#scrollToTopBtn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+#scrollToTopBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+#scrollToTopBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+#scrollToTopBtn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}

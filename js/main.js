@@ -1,3 +1,36 @@
+function scrollToTop() {
+    const snapContainer = document.querySelector('.snap-container');
+    if (snapContainer) {
+        snapContainer.scrollTop = 0;
+        snapContainer.scrollTo(0, 0);
+    }
+    window.scrollTo(0, 0);
+}
+
+// Scroll en haut au reload
+if (window.history.scrollRestoration) {
+    window.history.scrollRestoration = 'manual';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    scrollToTop();
+
+    setTimeout(scrollToTop, 50);
+
+    const btn = document.getElementById('scrollToTopBtn');
+    if (btn) {
+        btn.addEventListener('click', scrollToTop);
+    }
+
+    const year = new Date().getFullYear();
+    const copyright = document.querySelector('[data-copyright]');
+    if (copyright) {
+        copyright.textContent =
+            `© ${year} - FERRAND-RICHARTE Basile - Tous droits réservés`;
+    }
+});
+
+
 
 /**
  * Fixe les problèmes de hauteursur mobile
