@@ -41,6 +41,7 @@ p {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     padding-top: 3.75rem;
+    scroll-padding-top: 3.75rem;
 }
 
 section {
@@ -53,6 +54,13 @@ section {
     justify-content: center;
     padding-top: 80px;
     box-sizing: border-box;
+}
+
+/* Assurer que le footer participe bien au scroll-snap */
+#footer-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100vh;
 }
 
 

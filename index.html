@@ -8,6 +8,39 @@
     <link rel="stylesheet" href="css/tokens.css">
 
 </head>
+<!-- Script pour forcer le scroll en haut au rechargement -->
+<script>
+    // Force le scroll en haut immédiatement au chargement
+    (function() {
+        // Exécuté immédiatement pendant le parsing HTML
+        if (window.history.scrollRestoration) {
+            window.history.scrollRestoration = 'manual';
+        }
+        
+        // Force le scroll en haut
+        function scrollToTop() {
+            const snapContainer = document.querySelector('.snap-container');
+            if (snapContainer) {
+                snapContainer.scrollTop = 0;
+                snapContainer.scrollTo(0, 0);
+            }
+            window.scrollTo(0, 0);
+        }
+        
+        // Exécution immédiate
+        scrollToTop();
+        
+        // Exécution au DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', scrollToTop);
+        } else {
+            scrollToTop();
+        }
+        
+        // Exécution après un court délai pour s'assurer que tout est chargé
+        setTimeout(scrollToTop, 50);
+    })();
+</script>
 <header>
     <div class="page-content header-content">
         <div id="header-left" class="container">
