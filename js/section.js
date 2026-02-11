@@ -19,7 +19,7 @@ class StatSection {
         section.id = this.id;
         section.style.backgroundColor = this.bgColor;
 
-        // Le lien source est maintenant dans le flux normal
+
         const sourceHTML = (this.source && this.source !== '' && this.source !== '#')
             ? `<a href="${this.source}" target="_blank" rel="noopener noreferrer" class="stat-source">${this.sourceText}</a>`
             : '<span class="stat-source-placeholder"></span>';

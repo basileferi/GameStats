@@ -238,7 +238,7 @@ function initScrollSpy() {
                 const id = entry.target.id;
 
                 if (entry.isIntersecting) {
-                    // Mise à jour navigation
+
                     navLinks.forEach(link => {
                         link.classList.toggle(
                             'active',
@@ -246,7 +246,7 @@ function initScrollSpy() {
                         );
                     });
 
-                    // Mise à jour barre de progression
+
                     progressItems.forEach(item => {
                         item.classList.toggle(
                             'active',
@@ -254,12 +254,12 @@ function initScrollSpy() {
                         );
                     });
 
-                    // Lancer animations GSAP
+
                     if (gsapAvailable) {
                         animateSection(entry.target);
                     }
                 } else {
-                    // Reset quand la section sort du viewport
+
                     if (gsapAvailable) {
                         resetSectionAnimations(entry.target);
                     }
